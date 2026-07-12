@@ -26,10 +26,11 @@ green-computing-araras/
 │   ├── inkscape/           # Arquivos vetoriais (.svg) editáveis
 │   └── latex/              # Código-fonte da cartilha (.tex, macros)
 └── dist/                   # Arquivos finais para distribuição (PDF e PNG)
-
+```
 ## 🚀 Como compilar (Build)
 ### LaTeX (Cartilha)
 O documento utiliza a classe `article` com o tema Nord. Para compilar:
 ```bash
 cd src/latex
 pdflatex main.tex
+```
