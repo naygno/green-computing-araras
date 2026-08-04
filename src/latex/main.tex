@@ -6,64 +6,258 @@
 % Pacotes essenciais
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[sfdefault]{roboto} 
 \usepackage[brazil]{babel}
 \usepackage{graphicx}
+\usepackage{graphbox} 
 \usepackage{xcolor}
 \usepackage{fontawesome5}
+\usepackage{caption}
+\usepackage{parskip}
+\usepackage{microtype} % Permite justificação perfeita em telas estreitas
 \usepackage{tcolorbox}
-\usepackage{parskip} % Espaçamento entre parágrafos sem indentação
 
-% Paleta de Cores (Tema Nord + AdGuard)
-\definecolor{NordBg}{HTML}{2E3440}
+% Paleta de Cores (Tema Nord + Destaques)
+\definecolor{NordBg}{HTML}{111418}
 \definecolor{NordText}{HTML}{D8DEE9}
 \definecolor{AdguardGreen}{HTML}{28C86F}
-\definecolor{WarningOrange}{HTML}{D08770}
+\definecolor{BraveOrange}{HTML}{FF5722}
+\definecolor{NordBlue}{HTML}{5E81AC}
+\definecolor{NordPurple}{HTML}{B48EAD}
+\definecolor{MacawYellow}{HTML}{F1C40F} % Amarelo da Arara
+\definecolor{MacawYellow}{HTML}{F1C40F}
+\definecolor{MacawBlue}{HTML}{1E88E5}   % Azul da Arara
 
-% Configuração de Fundo e Texto
+% Pacote para links clicáveis
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=MacawBlue,
+    urlcolor=AdguardGreen
+}
+
+% Configuração de Fundo e Texto 111418
 \pagecolor{NordBg}
 \color{NordText}
 
-% Macro customizada para os passos (Herdada do projeto anterior)
+% Macro customizada para os passos (Justificada)
 \newcommand{\passo}[3]{
-    \vspace{3mm}
-    \noindent
-    \begin{tcolorbox}[colback=#1!10!NordBg, colframe=#1, boxrule=0.5pt, arc=4pt, left=2mm, right=2mm, top=2mm, bottom=2mm]
-        \textbf{\textcolor{#1}{\faMobile* \ Passo #2:}} \small{#3}
-    \end{tcolorbox}
+    \vspace{2mm}
+    \noindent \textbf{\textcolor{#1}{\faMobile* \ Passo #2: }}{\small #3}\par
 }
 
 \begin{document}
 
-% Cabeçalho
+% ================= PÁGINA 1: CAPA =================
 \begin{center}
-    \Large{\textbf{\textcolor{AdguardGreen}{\faLeaf \ Sobriedade Digital}}}\\
+    \Large{\textbf{\textcolor{MacawYellow}{\faLeaf \ Sobriedade Digital}}}\\
+\end{center}
+
+\vspace{1mm}
+\noindent\normalsize{\textcolor{NordText}{Como fazer sua internet durar mais e o seu celular não ficar travando tão cedo.}}
+\vspace{2mm}
+\hrule
+
+\begin{center}
+    \vspace{6mm}
+    % --- IMAGEM POLIGONAL DAS ARARAS ---
+    \includegraphics[width=1\textwidth]{../../assets/screenshots/araras_poly.png}
+    %\textcolor{NordText!20}{\rule{0.8\textwidth}{5cm}} % Placeholder
+\end{center}
+
+\vspace{6mm}
+
+{\small \textbf{O Gasto Invisível:} Anúncios e aplicativos rodando escondidos consomem até 40\% da sua internet e esquentam a bateria. Siga os passos das próximas páginas para ativar a economia de dados, bloquear propagandas e proteger sua família contra conteúdos impróprios.}
+
+\vfill
+\begin{center}
+    \tiny{\textcolor{NordText!50}{Projeto de Extensão UFBRA | Apoio: COMAM - Recanto das Araras}}
+\end{center}
+
+\newpage
+
+% ================= PÁGINA 2: SEÇÃO 1 (DNS) =================
+\large{\textbf{\textcolor{AdguardGreen}{1. Bloquear Anúncios (DNS)}}}
+\normalsize
+
+\passo{AdguardGreen}{1}{Abra as \textbf{Configurações} do celular e vá em \textbf{Rede e Internet} (ou Conexões).}
+\passo{AdguardGreen}{2}{Toque em \textbf{DNS Particular} e selecione "Nome do host do provedor".}
+\passo{AdguardGreen}{3}{Digite \texttt{family.adguard-dns.com} e salve. (Isso bloqueia anúncios e conteúdo adulto).}
+
+\vspace{4mm}
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_rede.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Tela de Rede}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_dns.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{DNS Particular}}
+\end{minipage}
+
+\newpage
+
+% ================= PÁGINA 3: SEÇÃO 2 (ECONOMIA GLOBAL) =================
+\large{\textbf{\textcolor{BraveOrange}{2. Ativar a Economia de Dados}}}
+\normalsize
+
+\passo{BraveOrange}{1}{Nas \textbf{Configurações} do celular, toque na \textbf{Barra de Pesquisa} no topo da tela.}
+\passo{BraveOrange}{2}{Digite \textbf{Economia de dados} e toque na opção que aparecer com este nome.}
+\passo{BraveOrange}{3}{Ative a chave \textbf{Usar o recurso Economia de dados}. Isso bloqueia o gasto invisível de vários apps de uma vez.}
+
+\vspace{4mm}
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    % Substitua pelo print da barra de pesquisa
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_pesquisa.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Pesquisar}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    % Substitua pelo print da chave de economia ativada
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_economia.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Ativar Chave}}
+\end{minipage}
+
+\newpage
+
+% ================= PÁGINA 4: SEÇÃO 3 (RESTRINGIR APPS - PARTE 1) =================
+\large{\textbf{\textcolor{NordBlue}{3. Restringir Apps Específicos}}}
+\normalsize
+
+\passo{NordBlue}{1}{Nas \textbf{Configurações}, vá em \textbf{Apps e notificações} (ou Aplicativos).}
+\passo{NordBlue}{2}{Na lista, escolha o aplicativo que gasta muita internet em segundo plano (ex: Facebook ou WhatsApp).}
+
+\vspace{4mm}
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_app1.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Apps e Notificações}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_app2.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Escolher o App}}
+\end{minipage}
+
+\newpage
+
+% ================= PÁGINA 5: SEÇÃO 3 (RESTRINGIR APPS - PARTE 2) =================
+\large{\textbf{\textcolor{NordBlue}{Continuação...}}}
+\normalsize
+
+\passo{NordBlue}{3}{Nas informações do app escolhido, toque na opção \textbf{Dados móveis e Wi-Fi}.}
+\passo{NordBlue}{4}{Desative a chave \textbf{Dados em segundo plano}. Isso impede o gasto de 4G escondido e reduz o aquecimento.}
+
+\vspace{4mm}
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_app3.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Info do App}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_app4.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Desativar Chave}}
+\end{minipage}
+
+\newpage
+
+% ================= PÁGINA 6: SEÇÃO 4 (AUTOPLAY WHATSAPP - PARTE 1) =================
+\large{\textbf{\textcolor{NordPurple}{4. Parar Download Automático}}}
+\normalsize
+
+\passo{NordPurple}{1}{No WhatsApp, toque nos \textbf{três pontos na vertical} (topo direito) e depois em \textbf{Configurações}.}
+\passo{NordPurple}{2}{Na tela seguinte, toque em \textbf{Armazenamento e dados}.}
+
+\vspace{4mm}
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_wpp1.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Menu Configurações}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_wpp2.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Armazenamento}}
+\end{minipage}
+
+\newpage
+
+% ================= PÁGINA 7: SEÇÃO 4 (AUTOPLAY WHATSAPP - PARTE 2) =================
+\large{\textbf{\textcolor{NordPurple}{Continuação...}}}
+\normalsize
+
+\passo{NordPurple}{3}{Na seção "Baixar mídia automaticamente", toque na opção \textbf{Ao utilizar dados móveis}.}
+\passo{NordPurple}{4}{Desmarque todas as caixas (\textbf{Fotos, Áudio, Vídeos, Documentos}) e toque em \textbf{OK}.}
+
+\vspace{4mm}
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_wpp3.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Dados Móveis}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[align=c, width=\textwidth]{../../assets/screenshots/print_wpp4.png}
+    \captionof*{figure}{\footnotesize \textcolor{NordText!80}{Desmarcar Tudo}}
+\end{minipage}
+
+\vfill
+\begin{center}
+    \tiny{\textcolor{NordText!50}{Projeto de Extensão UFBRA | Apoio: COMAM - Recanto das Araras}}
+\end{center}
+
+\newpage
+
+\newpage
+
+% ================= PÁGINA 8: CONCLUSÃO E LINKS =================
+\begin{center}
+    \Large{\textbf{\textcolor{AdguardGreen}{\faCheckCircle \ Missão Cumprida!}}}\\
     \vspace{2mm}
-    \normalsize{Como fazer sua internet durar mais e o celular não travar.}
-    \vspace{4mm}
     \hrule
 \end{center}
 
+\vspace{3mm}
+
+{\small \textbf{Agradecimentos:} Este projeto não seria possível sem o apoio fundamental da \textbf{Associação de Moradores do Recanto das Araras I e II} e da liderança do \textbf{COMAM} (em especial à vice-presidente Carolina). Agradecemos a cada morador que aplicou essas dicas para construir uma comunidade digital mais segura e econômica.}
+
 \vspace{4mm}
 
-% Introdução
-\textbf{O Gasto Invisível:} Você sabia que anúncios e aplicativos rodando escondidos consomem até 40\% da sua internet e esquentam a bateria? Siga os passos abaixo para bloquear isso.
+% O colchete '[' DEVE estar colado no '\begin{tcolorbox}' sem quebra de linha!
+\begin{tcolorbox}[colback=NordBg, colframe=MacawYellow, boxrule=1pt, arc=4pt, left=2mm, right=2mm]
+    \centering
+    \textbf{\textcolor{MacawYellow}{Deu certo para você?}}\\[2mm]
+    {\scriptsize Clique no link ou escaneie o QR Code abaixo para confirmar que conseguiu configurar seu celular. Isso ajuda muito na avaliação do meu projeto na faculdade!}\\[3mm]
+    
+    % --- ESPAÇO PARA O QR CODE DO SHORT.IO ---
+    % 1. Baixe o QR Code gerado no painel do Short.io
+    % 2. Salve como 'qrcode_ok.png' na pasta 'assets/'
+    % 3. Comente a linha do '\rule' e descomente a linha do '\includegraphics'
+    %\textcolor{NordText!20}{\rule{2.5cm}{2.5cm}}\\[2mm]
+    \includegraphics[width=2.5cm]{../../assets/screenshots/qr_araras-ok.png}\\[2mm]
+    
+    \begin{center}
+    % Substitua o link abaixo pelo seu link real do Short.io
+        \href{https://bfaxke.short.gy/araras-ok}{\textbf{\textcolor{AdguardGreen}{\faLink \ CLIQUE AQUI PARA DAR O SEU OK!}}}
+    \end{center}
+\end{tcolorbox}
 
-\vspace{4mm}
+\vfill
 
-% Seção 1: AdGuard DNS
-\large{\textbf{\textcolor{AdguardGreen}{1. Bloqueador de Anúncios (DNS)}}}
-\normalsize
-
-\passo{AdguardGreen}{1}{Abra as \textbf{Configurações} do seu celular e toque em \textbf{Rede e Internet} (ou Conexões).}
-
-\passo{AdguardGreen}{2}{Procure por \textbf{DNS Privado} (pode estar dentro de "Mais configurações de conexão").}
-
-\passo{AdguardGreen}{3}{Selecione "Nome do host do provedor" e digite exatamente: \texttt{dns.adguard-dns.com}. Salve.}
-
-% Espaço para a imagem (Screenshot)
 \begin{center}
-    % \includegraphics[width=0.8\textwidth]{../../assets/screenshots/print_dns.png}
-    \textit{[Espaço reservado para o print do celular]}
+    \scriptsize
+    \textbf{Autor:} Naygno\\[2mm] % Adicionado respiro de 2mm
+    {\small Estudante de Ciência da Computação - UFBRA}\\[2mm] % Adicionado respiro de 4mm
+    \href{https://github.com/naygno/green-computing-araras}{\textcolor{NordText!80}{\faGithub \ github.com/naygno/green-computing-araras}}
 \end{center}
 
 \end{document}
