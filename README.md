@@ -80,4 +80,4 @@ pdflatex main.tex
 Agradecimento especial à **Associação de Moradores do Recanto das Araras I e II** e à vice-presidente do **COMAM (Carolina)** pela cooperação no processo de validação de requisitos, usabilidade e distribuição na comunidade.
 
 ---
-**Autor:** Naygno Barbosa Noia — *Acadêmico de Ciência da Computação (UFBRA)*
+**Autor:** @naygno — *Acadêmico de Ciência da Computação (UFBRA)*

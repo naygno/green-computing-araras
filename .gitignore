@@ -28,6 +28,6 @@ legado.md
 # Inkscape auto-saves
 *~
 *.swp
-
+src\inkscape\capturas.svg
 # Ignore raw assets if they get too large (optional, commented out)
 # assets/screenshots/*.png
