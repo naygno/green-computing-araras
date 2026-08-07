@@ -22,7 +22,7 @@ A otimização de software no dispositivo do usuário final (*Edge*) reduz o tr�
 <!-- TELEMETRY_END -->
 
 ## 📈 Histórico de Adesão
-O gráfico abaixo é atualizado automaticamente via GitHub Actions a cada nova confirmação de leitura e aplicação das dicas pela comunidade.
+O gráfico abaixo é atualizado automaticamente via pipeline de CI/CD (GitHub Actions) a cada nova confirmação de leitura e aplicação das dicas pela comunidade.
 
 ![Evolução de Cliques](assets/telemetry_chart.png)
 
@@ -36,8 +36,10 @@ O gráfico abaixo é atualizado automaticamente via GitHub Actions a cada nova c
    - Cobertura de 4 pilares: DNS Privado (AdGuard Family), Economia de Dados Global, Restrição de Apps em 2º Plano e Desativação de Autoplay no WhatsApp.
 2. **Cartaz Promocional de Divulgação (PNG):**
    - Arte de engajamento em 1080x1080px (desenvolvida no Inkscape) para acompanhamento da cartilha no WhatsApp.
-3. **Sistema de Telemetria e Feedback:**
-   - Integração com **Short.io** + **QR Code** apontando para um endpoint estático de confirmação hospedado no GitHub (`assets/ok_registrado.png`), mensurando a taxa de adoção da comunidade sem coletar dados sensíveis dos moradores.
+3. **Sistema de Telemetria e Pipeline de Dados:**
+   - Integração com **Short.io** + **QR Code** apontando para um endpoint estático no GitHub (`assets/ok_registrado.png`).
+   - Script em **Python** que consome a REST API do Short.io, processa o histórico via `pandas`, plota o gráfico com `matplotlib` e reescreve este README dinamicamente.
+   - Automação via **GitHub Actions** (Cron Job) para atualização diária sem intervenção manual.
 
 ---
 
@@ -68,14 +70,16 @@ green-computing-araras/
 ├── LICENSE
 └── README.md
 ```
+
 ---
 
 ## 🛠️ Tecnologias e Ferramentas
 
+* **Automação e Engenharia de Dados:** Python 3.11, Pandas, Matplotlib, GitHub Actions (CI/CD), REST API.
 * **Tipografia e Diagramação:** LaTeX (`pdflatex`), pacotes `tcolorbox`, `microtype`, `roboto`, `graphbox`, `hyperref`.
 * **Design Gráfico e UI:** Inkscape, GIMP, DALL-E 3 (conceito Low Poly).
 * **Captura de Tela e Usabilidade:** `scrcpy` (espelhamento Android em alta fidelidade).
-* **Rastreamento e Telemetria:** Short.io, GitHub Raw Endpoints.
+* **Rastreamento:** Short.io, GitHub Raw Endpoints.
 
 ---
 
