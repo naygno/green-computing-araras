@@ -32,8 +32,7 @@ new_row = {'date': today, 'clicks': clicks}
 
 if os.path.exists(CSV_PATH):
     df = pd.read_csv(CSV_PATH)
-    # Evita duplicatas se rodar mais de uma vez no mesmo dia
-    if today not in df['date'].values:
+    if today not in df['date'].astype(str).values:
         df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
 else:
     df = pd.DataFrame([new_row])
@@ -42,25 +41,32 @@ df.to_csv(CSV_PATH, index=False)
 
 # 3. Gerar Gráfico (Matplotlib)
 df['date'] = pd.to_datetime(df['date'])
-plt.style.use('dark_background') # Combina com o tema Nord do PDF
+plt.style.use('dark_background')
 fig, ax = plt.subplots(figsize=(10, 5))
 
-ax.plot(df['date'], df['clicks'], marker='o', linestyle='-', color='#28C86F', linewidth=2, markersize=6)
-ax.fill_between(df['date'], df['clicks'], color='#28C86F', alpha=0.3)
+if len(df) == 1:
+    # Ponto único: barra isolada (evita linha/fill degenerados)
+    ax.bar(df['date'], df['clicks'], width=0.6, color='#28C86F', alpha=0.85)
+    ax.set_xlim(df['date'].min() - pd.Timedelta(days=2), df['date'].max() + pd.Timedelta(days=2))
+else:
+    ax.plot(df['date'], df['clicks'], marker='o', linestyle='-', color='#28C86F', linewidth=2, markersize=6)
+    ax.fill_between(df['date'], df['clicks'], color='#28C86F', alpha=0.3)
+
+# Eixo X: SOMENTE as datas reais do CSV (elimina os ticks fantasma 01/01 e 01/07)
+ax.set_xticks(df['date'])
+ax.xaxis.set_major_formatter(mdates.DateFormatter('%d/%m/%Y'))
+plt.xticks(rotation=45)
+ax.set_ylim(0, max(df['clicks']) + 2)
 
 ax.set_title('Evolução de Adesões (Green Computing Araras)', color='white', fontsize=14, pad=15)
 ax.set_xlabel('Data', color='white')
 ax.set_ylabel('Cliques Confirmados', color='white')
 ax.grid(True, linestyle='--', alpha=0.3)
-
-# Formatação do eixo X
-ax.xaxis.set_major_formatter(mdates.DateFormatter('%d/%m'))
-plt.xticks(rotation=45)
 plt.tight_layout()
-plt.savefig(CHART_PATH, dpi=100, facecolor='#161920') # Fundo escuro igual ao PDF
+plt.savefig(CHART_PATH, dpi=100, facecolor='#161920')
 plt.close()
 
-# 4. Atualizar README
+# 4. Atualizar README (linha em negrito puro, SEM '#')
 try:
     with open(README_PATH, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -73,6 +79,8 @@ try:
 
     if '<!-- TELEMETRY_START -->' in content:
         new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+        # Higienização: remove linha de título '#' residual da telemetria fora dos marcadores
+        new_content = re.sub(r'^#{1,6}\s*📊.*Telemetria.*\n?', '', new_content, flags=re.MULTILINE)
         with open(README_PATH, 'w', encoding='utf-8') as f:
             f.write(new_content)
         print("README e Gráfico atualizados com sucesso.")
