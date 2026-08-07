@@ -67,7 +67,7 @@ green-computing-araras/
 ├── .gitignore
 ├── LICENSE
 └── README.md
-
+```
 ---
 
 ## 🛠️ Tecnologias e Ferramentas

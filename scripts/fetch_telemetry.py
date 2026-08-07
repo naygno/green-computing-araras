@@ -4,13 +4,10 @@ import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-from datetime import datetime
-
 from datetime import datetime, timedelta, timezone
 
 # Fuso horário de Brasília/Palmas (UTC-3)
 tz_br = timezone(timedelta(hours=-3))
-today = datetime.now(tz_br).strftime('%Y-%m-%d')
 
 API_KEY = os.environ.get('SHORT_IO_API_KEY')
 LINK_ID = os.environ.get('SHORT_IO_LINK_ID')
@@ -33,13 +30,17 @@ except requests.exceptions.RequestException as e:
     exit(1)
 
 # 2. Gerenciar Histórico (CSV)
-today = datetime.now().strftime('%Y-%m-%d')
+# CORREÇÃO: Usando tz_br para garantir a data do Brasil
+today = datetime.now(tz_br).strftime('%Y-%m-%d')
 new_row = {'date': today, 'clicks': clicks}
 
 if os.path.exists(CSV_PATH):
     df = pd.read_csv(CSV_PATH)
     if today not in df['date'].astype(str).values:
         df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+    else:
+        # Atualiza o valor de hoje se a linha já existir
+        df.loc[df['date'] == today, 'clicks'] = clicks
 else:
     df = pd.DataFrame([new_row])
 
@@ -51,14 +52,14 @@ plt.style.use('dark_background')
 fig, ax = plt.subplots(figsize=(10, 5))
 
 if len(df) == 1:
-    # Ponto único: barra isolada (evita linha/fill degenerados)
-    ax.bar(df['date'], df['clicks'], width=0.15, color='#28C86F', alpha=0.85)
+    # Ponto único: barra isolada fina (width=0.1)
+    ax.bar(df['date'], df['clicks'], width=0.1, color='#28C86F', alpha=0.85)
     ax.set_xlim(df['date'].min() - pd.Timedelta(days=2), df['date'].max() + pd.Timedelta(days=2))
 else:
     ax.plot(df['date'], df['clicks'], marker='o', linestyle='-', color='#28C86F', linewidth=2, markersize=6)
     ax.fill_between(df['date'], df['clicks'], color='#28C86F', alpha=0.3)
 
-# Eixo X: SOMENTE as datas reais do CSV (elimina os ticks fantasma 01/01 e 01/07)
+# Eixo X: SOMENTE as datas reais do CSV
 ax.set_xticks(df['date'])
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%d/%m/%Y'))
 plt.xticks(rotation=45)
@@ -72,20 +73,21 @@ plt.tight_layout()
 plt.savefig(CHART_PATH, dpi=100, facecolor='#161920')
 plt.close()
 
-# 4. Atualizar README (linha em negrito puro, SEM '#')
+# 4. Atualizar README
 try:
     with open(README_PATH, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    timestamp = datetime.now().strftime('%d/%m/%Y às %H:%M')
+    # CORREÇÃO: Usando tz_br para garantir a hora de Palmas
+    timestamp = datetime.now(tz_br).strftime('%d/%m/%Y às %H:%M')
     new_stats_block = f"📊 **Telemetria de Impacto:** {clicks} adesões confirmadas via Short.io (Atualizado em {timestamp})"
 
-    pattern = r'(<!-- TELEMETRY_START -->\n)(.*?)(\n<!-- TELEMETRY_END -->)'
+    # CORREÇÃO: Regex flexível com \s*
+    pattern = r'(<!-- TELEMETRY_START -->\s*)(.*?)(\s*<!-- TELEMETRY_END -->)'
     replacement = r'\1' + new_stats_block + r'\3'
 
     if '<!-- TELEMETRY_START -->' in content:
         new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
-        # Higienização: remove linha de título '#' residual da telemetria fora dos marcadores
         new_content = re.sub(r'^#{1,6}\s*📊.*Telemetria.*\n?', '', new_content, flags=re.MULTILINE)
         with open(README_PATH, 'w', encoding='utf-8') as f:
             f.write(new_content)
