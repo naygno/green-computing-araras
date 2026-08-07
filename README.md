@@ -45,25 +45,28 @@ O gráfico abaixo é atualizado automaticamente via GitHub Actions a cada nova c
 
 ```text
 green-computing-araras/
-├── .gitignore
-├── LICENSE
-├── README.md
+├── .github/
+│   └── workflows/
+│       └── telemetry.yml        # Automação CI/CD (GitHub Actions)
 ├── assets/
 │   ├── araras_poly.png          # Arte de capa (Arara Low Poly)
-│   ├── cartaz_divulgacao.png    # Cartaz promocional para WhatsApp
+│   ├── cartaz_sobriedade_diginal.png
 │   ├── ok_registrado.png        # Endpoint estático de confirmação (Short.io)
 │   ├── qr_araras-ok.png         # QR Code do Short.io
-│   └── screenshots/             # Screenshots reais do Android/WhatsApp
-│       ├── print_app1.png ... print_app4.png
-│       ├── print_dns.png / print_rede.png
-│       ├── print_economia.png / print_pesquisa.png
-│       └── print_wpp1.png ... print_wpp4.png
+│   ├── telemetry_chart.png      # Gráfico gerado dinamicamente
+│   ├── telemetry_history.csv    # Banco de dados histórico de cliques
+│   └── screenshots/             # Prints reais do Android/WhatsApp
+├── dist/
+│   └── main.pdf                 # Compilado final da cartilha
+├── scripts/
+│   └── fetch_telemetry.py       # Script de extração de dados da API
 ├── src/
 │   ├── inkscape/                # Fontes vetoriais (.svg)
 │   └── latex/                   # Código-fonte TeX, macros e estilos
 │       └── main.tex
-└── dist/                        # Compilado final (main.pdf)
-```
+├── .gitignore
+├── LICENSE
+└── README.md
 
 ---
 

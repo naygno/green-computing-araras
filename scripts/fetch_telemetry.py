@@ -6,6 +6,12 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from datetime import datetime
 
+from datetime import datetime, timedelta, timezone
+
+# Fuso horário de Brasília/Palmas (UTC-3)
+tz_br = timezone(timedelta(hours=-3))
+today = datetime.now(tz_br).strftime('%Y-%m-%d')
+
 API_KEY = os.environ.get('SHORT_IO_API_KEY')
 LINK_ID = os.environ.get('SHORT_IO_LINK_ID')
 README_PATH = 'README.md'
@@ -46,7 +52,7 @@ fig, ax = plt.subplots(figsize=(10, 5))
 
 if len(df) == 1:
     # Ponto único: barra isolada (evita linha/fill degenerados)
-    ax.bar(df['date'], df['clicks'], width=0.6, color='#28C86F', alpha=0.85)
+    ax.bar(df['date'], df['clicks'], width=0.15, color='#28C86F', alpha=0.85)
     ax.set_xlim(df['date'].min() - pd.Timedelta(days=2), df['date'].max() + pd.Timedelta(days=2))
 else:
     ax.plot(df['date'], df['clicks'], marker='o', linestyle='-', color='#28C86F', linewidth=2, markersize=6)
