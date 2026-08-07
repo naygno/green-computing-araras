@@ -18,7 +18,7 @@ A otimização de software no dispositivo do usuário final (*Edge*) reduz o tr�
 ---
 
 #<!-- TELEMETRY_START -->
-📊 **Telemetria de Impacto:** Aguardando primeira execução...
+📊 **Telemetria de Impacto:** 7 adesões confirmadas via Short.io (Atualizado em 07/08/2026 às 11:04)
 <!-- TELEMETRY_END -->
 
 ## 📈 Histórico de Adesão
