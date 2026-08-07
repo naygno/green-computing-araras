@@ -2,8 +2,8 @@ name: Atualizar Telemetria Short.io
 
 on:
   schedule:
-    - cron: '0 12 * * *' # Executa diariamente ao meio-dia (UTC)
-  workflow_dispatch: # Permite execução manual na aba "Actions"
+    - cron: '0 12 * * *' # Diariamente ao meio-dia (UTC)
+  workflow_dispatch:
 
 jobs:
   update-telemetry:
@@ -18,7 +18,7 @@ jobs:
           python-version: '3.11'
 
       - name: Instalar Dependências
-        run: pip install requests
+        run: pip install requests pandas matplotlib
 
       - name: Executar Script de Telemetria
         env:
@@ -30,6 +30,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add README.md
-          git diff --staged --quiet || git commit -m "docs: atualiza telemetria de cliques (Short.io)"
+          git add README.md assets/telemetry_history.csv assets/telemetry_chart.png
+          git diff --staged --quiet || git commit -m "docs: atualiza telemetria e gráfico de evolução"
           git push
