@@ -17,12 +17,9 @@ A otimização de software no dispositivo do usuário final (*Edge*) reduz o tr�
 
 ---
 
-timestamp = datetime.now(tz_br).strftime('%d/%m/%Y às %H:%M')
-    new_stats_block = f"📊 **Telemetria de Impacto:** {clicks} adesões confirmadas via Short.io (Atualizado em {timestamp})"
-
-    # Regex flexível que ignora diferenças de quebra de linha (\n ou \r\n)
-    pattern = r'(<!-- TELEMETRY_START -->\s*)(.*?)(\s*<!-- TELEMETRY_END -->)'
-    replacement = r'\1' + new_stats_block + r'\3'
+<!-- TELEMETRY_START -->
+📊 **Telemetria de Impacto:** Aguardando atualização do bot...
+<!-- TELEMETRY_END -->
 
 ## 📈 Histórico de Adesão
 O gráfico abaixo é atualizado automaticamente via GitHub Actions a cada nova confirmação de leitura e aplicação das dicas pela comunidade.
