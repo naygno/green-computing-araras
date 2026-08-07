@@ -10,6 +10,10 @@ Projeto de atividade extensionista universitária (UFBRA) focado na aplicação 
 
 O objetivo principal é promover o letramento digital focado na estagnação do desperdício financeiro familiar com pacotes de dados móveis e na mitigação da obsolescência acelerada de smartphones (lixo eletrônico).
 
+<!-- TELEMETRY_START -->
+📊 **Telemetria de Impacto:** Aguardando primeira execução do script...
+<!-- TELEMETRY_END -->
+
 ### 🌿 Alinhamento com os ODS (ONU)
 A otimização de software no dispositivo do usuário final (*Edge*) reduz o tráfego de dados inútil (anúncios, telemetria e mídias automáticas), gerando impacto ambiental na infraestrutura global:
 * **ODS 7 (Energia Limpa):** Redução da demanda elétrica nas antenas de transmissão 4G/5G e roteadores.
