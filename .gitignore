@@ -24,7 +24,6 @@ Thumbs.db
 *.nav
 *.snm
 *.vrb
-legado.md
 # Inkscape auto-saves
 *~
 *.swp
@@ -46,3 +45,6 @@ src/latex/*.run.xml
 src/latex/*.synctex.gz
 src/latex/*.toc
 src/latex/*.pdf
+
+src/inkscape/capturas.svg
+legado.md

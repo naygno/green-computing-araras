@@ -51,20 +51,23 @@ green-computing-araras/
 │   └── workflows/
 │       └── telemetry.yml        # Automação CI/CD (GitHub Actions)
 ├── assets/
-│   ├── araras_poly.png          # Arte de capa (Arara Low Poly)
-│   ├── cartaz_sobriedade_diginal.png
+│   ├── cartaz_sobriedade_digital.png
 │   ├── ok_registrado.png        # Endpoint estático de confirmação (Short.io)
-│   ├── qr_araras-ok.png         # QR Code do Short.io
 │   ├── telemetry_chart.png      # Gráfico gerado dinamicamente
 │   ├── telemetry_history.csv    # Banco de dados histórico de cliques
-│   └── screenshots/             # Prints reais do Android/WhatsApp
+│   └── screenshots/             # Prints reais e artes de capa
+│       ├── araras_poly.png      # Arte de capa (Arara Low Poly)
+│       ├── qr_araras-ok.png     # QR Code do Short.io
+│       ├── print_app1.png ... print_app4.png
+│       ├── print_dns.png / print_rede.png
+│       ├── print_economia.png / print_pesquisa.png
+│       └── print_wpp1.png ... print_wpp4.png
 ├── dist/
 │   └── main.pdf                 # Compilado final da cartilha
 ├── scripts/
 │   └── fetch_telemetry.py       # Script de extração de dados da API
 ├── src/
-│   ├── inkscape/                # Fontes vetoriais (.svg)
-│   └── latex/                   # Código-fonte TeX, macros e estilos
+│   └── latex/                   # Código-fonte TeX
 │       └── main.tex
 ├── .gitignore
 ├── LICENSE
