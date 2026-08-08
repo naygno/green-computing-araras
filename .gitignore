@@ -32,3 +32,17 @@ src\inkscape\capturas.svg
 # Ignore raw assets if they get too large (optional, commented out)
 # assets/screenshots/*.png
 __pycache__/
+
+# LaTeX Build Artifacts (Impede que arquivos temporários e PDFs de src/ sejam commitados)
+src/latex/*.aux
+src/latex/*.bbl
+src/latex/*.bcf
+src/latex/*.blg
+src/latex/*.fdb_latexmk
+src/latex/*.fls
+src/latex/*.log
+src/latex/*.out
+src/latex/*.run.xml
+src/latex/*.synctex.gz
+src/latex/*.toc
+src/latex/*.pdf
